@@ -4,18 +4,24 @@ CLASS zmav_cl_git_test DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
+    INTERFACES zmav_if_git_test.
   PROTECTED SECTION.
   PRIVATE SECTION.
-    METHODS test_method.
 ENDCLASS.
 
 
 
 CLASS zmav_cl_git_test IMPLEMENTATION.
-  METHOD test_method.
-      data(lv_new_value) = 3.
-      data(lv_old_value) = 3.
-      lv_new_value = 4.
+
+  METHOD zmav_if_git_test~get_id.
+    SELECT SINGLE id
+     FROM zmavt_git
+      WHERE id = @iv_git_id
+       INTO @rt_id.
+  ENDMETHOD.
+
+  METHOD zmav_if_git_test~set_id.
+    INSERT ZMAVT_GIT FROM @( VALUE #( id = iv_git_id ) ).
   ENDMETHOD.
 
 ENDCLASS.
