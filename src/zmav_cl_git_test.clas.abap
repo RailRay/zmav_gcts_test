@@ -22,6 +22,7 @@ CLASS zmav_cl_git_test IMPLEMENTATION.
 
   METHOD zmav_if_git_test~set_id.
     INSERT ZMAVT_GIT FROM @( VALUE #( id = iv_git_id ) ).
+    DATA(lv_new_value) = 4.
   ENDMETHOD.
 
 ENDCLASS.
